@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leah - Technical Product Manager | Climate Tech Leader</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2c5f2d;
+            --secondary: #97bc62;
+            --accent: #4a90e2;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+        
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+        }
+        
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--secondary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -45px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--secondary);
+        }
+        
+        .timeline-date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-company {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-description {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .skill-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-list {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        /* Focus Areas */
+        .focus-areas {
+            background: var(--bg-light);
+        }
+        
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .focus-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .focus-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .focus-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .focus-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .contact .section-title {
+            color: var(--white);
+        }
+        
+        .contact .section-subtitle {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline-item::before {
+                left: -26px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="container">
+            <div class="logo">Leah</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#focus">Focus Areas</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Leah</h1>
+                    <p class="subtitle">Technical Product Manager | Climate Tech Leader</p>
+                    <p>Driving innovation at the intersection of environmental science and technology. 12+ years building digital products that create measurable environmental impact for Fortune 500 companies and startups.</p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                        <a href="#experience" class="btn btn-secondary">View Experience</a>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">12+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">$2M+</span>
+                        <span class="stat-label">Budgets Managed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Team Leadership</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Bridging Technology and Environmental Impact</p>
+            <div style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8;">
+                <p style="margin-bottom: 1.5rem;">I'm a bilingual (French/English) Technical Product Manager passionate about leveraging technology to address climate challenges. With experience spanning from Syngenta to innovative startups, I specialize in building products that deliver both business value and environmental impact.</p>
+                
+                <p style="margin-bottom: 1.5rem;">Currently engaged with CDR.fyi's NBS portal and participating in Cohort 8 of the Climatebase Fellowship, I'm deeply involved in carbon removal technology and methodology development. My work focuses on critiquing and improving carbon credit frameworks while developing practical solutions for enterprise-level environmental challenges.</p>
+                
+                <p>Based between Boston and the French Alps, I bring a global perspective to product development, combining technical expertise with deep domain knowledge in agricultural technology, geospatial data, and environmental modeling.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience" style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">Building Products That Matter</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Current Focus</div>
+                    <div class="timeline-title">Climate Tech Product Leadership</div>
+                    <div class="timeline-company">Multiple Opportunities</div>
+                    <div class="timeline-description">
+                        Actively engaged in carbon removal technology through CDR.fyi's NBS portal and Climatebase Fellowship Cohort 8. Exploring opportunities including VP Product at Atomic (Boston), Digital Transformation with Datamars (Switzerland), and Commercial Director for EU expansion with ChrysaLabs ag-tech startup.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Previous</div>
+                    <div class="timeline-title">Technical Product Manager</div>
+                    <div class="timeline-company">Well Principled</div>
+                    <div class="timeline-description">
+                        Led digital product development initiatives focused on environmental impact measurement and optimization. Managed cross-functional teams to deliver innovative solutions for sustainability challenges.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Previous</div>
+                    <div class="timeline-title">Product Management</div>
+                    <div class="timeline-company">CIBO Technologies</div>
+                    <div class="timeline-description">
+                        Developed agricultural technology products leveraging geospatial data and environmental modeling. Worked with scientific stakeholders to translate complex research into scalable digital solutions.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Previous</div>
+                    <div class="timeline-title">Digital Product Lead</div>
+                    <div class="timeline-company">Syngenta</div>
+                    <div class="timeline-description">
+                        Managed R&D digital product development for one of the world's largest agricultural companies. Led teams of 10+ members with budgets exceeding $2M, delivering enterprise-scale solutions for crop science and sustainability.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Previous</div>
+                    <div class="timeline-title">Product Manager</div>
+                    <div class="timeline-company">Verizon Connect</div>
+                    <div class="timeline-description">
+                        Developed IoT and connectivity solutions for fleet management and logistics optimization, focusing on reducing environmental impact through route optimization and fuel efficiency improvements.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Core Competencies</h2>
+            <p class="section-subtitle">Technical Expertise Meets Environmental Science</p>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🚀</div>
+                    <h3 class="skill-title">Product Management</h3>
+                    <div class="skill-list">
+                        • R&D Digital Product Development<br>
+                        • Cross-functional Team Leadership<br>
+                        • Stakeholder Management<br>
+                        • $2M+ Budget Management<br>
+                        • Agile & Lean Methodologies
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">🌍</div>
+                    <h3 class="skill-title">Climate Technology</h3>
+                    <div class="skill-list">
+                        • Carbon Credit Methodologies<br>
+                        • NBS (Nature-based Solutions)<br>
+                        • Environmental Modeling<br>
+                        • Sustainability Metrics<br>
+                        • Climate Risk Assessment
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3 class="skill-title">Technical Skills</h3>
+                    <div class="skill-list">
+                        • Geospatial Data Analysis<br>
+                        • IoT Integration<br>
+                        • Digital Commerce Tools<br>
+                        • AI-powered Demand Forecasting<br>
+                        • Supply Chain Optimization
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">🌾</div>
+                    <h3 class="skill-title">Domain Expertise</h3>
+                    <div class="skill-list">
+                        • Agricultural Technology<br>
+                        • Environmental Science<br>
+                        • Fortune 500 Implementations<br>
+                        • Scientific Research Translation<br>
+                        • Breeding Cooperative Systems
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">🌐</div>
+                    <h3 class="skill-title">Global Perspective</h3>
+                    <div class="skill-list">
+                        • Bilingual: French & English<br>
+                        • US & European Markets<br>
+                        • International Team Management<br>
+                        • Cross-cultural Communication<br>
+                        • Remote Team Leadership
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3 class="skill-title">Business Strategy</h3>
+                    <div class="skill-list">
+                        • Market Entry Planning<br>
+                        • Competitive Analysis<br>
+                        • Revenue Optimization<br>
+                        • Partnership Development<br>
+                        • Investor Relations
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus Areas Section -->
+    <section id="focus" class="focus-areas">
+        <div class="container">
+            <h2 class="section-title">Current Focus Areas</h2>
+            <p class="section-subtitle">Where I'm Making Impact</p>
+            
+            <div class="focus-grid">
+                <div class="focus-item">
+                    <div class="focus-icon">🌱</div>
+                    <div class="focus-title">Carbon Removal</div>
+                    <p>Developing and critiquing methodologies for verified carbon credits</p>
+                </div>
+                
+                <div class="focus-item">
+                    <div class="focus-icon">🤖</div>
+                    <div class="focus-title">AI for Supply Chain</div>
+                    <p>Implementing AI-powered demand forecasting and optimization</p>
+                </div>
+                
+                <div class="focus-item">
+                    <div class="focus-icon">🏔️</div>
+                    <div class="focus-title">Climate Risk</div>
+                    <p>Assessing glacier-dependent agricultural vulnerabilities</p>
+                </div>
+                
+                <div class="focus-item">
+                    <div class="focus-icon">🌍</div>
+                    <div class="focus-title">NBS Solutions</div>
+                    <p>Nature-based solutions for enterprise sustainability</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">Interested in discussing climate tech, product strategy, or potential opportunities?</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    📍 Boston & French Alps
+                </div>
+                <div class="contact-item">
+                    🌐 Climatebase Fellowship Cohort 8
+                </div>
+                <div class="contact-item">
+                    💼 Open to Opportunities
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <a href="mailto:contact@example.com" class="btn btn-primary">Send Message</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Leah. Building a sustainable future through technology.</p>
+        </div>
+    </footer>
+
+    <!-- Smooth Scrolling Script -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+</body>
+</html>
