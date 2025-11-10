@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leah - Technical Product Manager | Climate Tech Leader</title>
+    <title>Leah Martin - Technical Product Manager | Climate Tech Leader</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,13 +23,24 @@
             --text-light: #6c757d;
             --bg-light: #f8f9fa;
             --white: #ffffff;
+            --overlay-dark: rgba(0, 0, 0, 0.6);
+            --overlay-gradient: linear-gradient(135deg, rgba(44, 95, 45, 0.9) 0%, rgba(151, 188, 98, 0.8) 100%);
+            --font-heading: 'Libre Baskerville', serif;
+            --font-body: 'Nunito', sans-serif;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--white);
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
         }
         
         .container {
@@ -36,11 +51,19 @@
         
         /* Header & Navigation */
         header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
         }
         
         nav {
@@ -54,6 +77,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
+            font-family: var(--font-heading);
         }
         
         .nav-links {
@@ -67,43 +91,102 @@
             color: var(--text-dark);
             font-weight: 500;
             transition: color 0.3s;
+            font-family: var(--font-body);
         }
         
         .nav-links a:hover {
             color: var(--accent);
         }
         
-        /* Hero Section */
+        /* Hero Section with Background Image */
         .hero {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        
+        /* Background image container */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(0.7);
+        }
+        
+        /* Overlay gradient */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay-gradient);
+            z-index: -1;
         }
         
         .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 120px 0 80px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
         }
         
+        .hero-text {
+            color: var(--white);
+        }
+        
         .hero-text h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease;
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .hero-text .subtitle {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            font-family: var(--font-body);
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
         
         .hero-text p {
             font-size: 1.1rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            font-family: var(--font-body);
+            font-weight: 400;
         }
         
         .hero-stats {
@@ -112,43 +195,58 @@
             gap: 2rem;
             background: rgba(255,255,255,0.1);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 15px;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: fadeInUp 0.8s ease 0.6s both;
         }
         
         .stat {
             text-align: center;
+            color: var(--white);
         }
         
         .stat-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-family: var(--font-heading);
         }
         
         .stat-label {
             font-size: 0.9rem;
             opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-body);
+            font-weight: 300;
         }
         
         .cta-buttons {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
+            animation: fadeInUp 0.8s ease 0.5s both;
         }
         
         .btn {
-            padding: 12px 28px;
-            border-radius: 5px;
+            padding: 14px 32px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            font-family: var(--font-body);
         }
         
         .btn-primary {
             background: var(--white);
             color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         
         .btn-secondary {
@@ -158,8 +256,13 @@
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
         }
         
         /* Sections */
@@ -171,15 +274,40 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--text-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
         }
         
         .section-subtitle {
             font-size: 1.2rem;
             color: var(--text-light);
             margin-bottom: 3rem;
+            font-family: var(--font-body);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        /* About Section with improved styling */
+        .about {
+            background: var(--white);
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
         }
         
         /* Experience Timeline */
+        .experience {
+            background: var(--bg-light);
+        }
+        
         .timeline {
             position: relative;
             padding-left: 40px;
@@ -192,19 +320,29 @@
             top: 0;
             height: 100%;
             width: 2px;
-            background: var(--secondary);
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
         }
         
         .timeline-item {
             position: relative;
             margin-bottom: 3rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
         
         .timeline-item::before {
             content: '';
             position: absolute;
             left: -45px;
-            top: 5px;
+            top: 30px;
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -222,6 +360,9 @@
         .timeline-title {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
         }
         
         .timeline-company {
@@ -235,7 +376,7 @@
             line-height: 1.6;
         }
         
-        /* Skills Grid */
+        /* Skills Grid with better cards */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -243,42 +384,57 @@
         }
         
         .skill-card {
-            background: var(--bg-light);
+            background: var(--white);
             padding: 2rem;
-            border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
         .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: var(--secondary);
         }
         
         .skill-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--secondary);
-            border-radius: 10px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--white);
         }
         
         .skill-title {
             font-size: 1.25rem;
             margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
         }
         
         .skill-list {
             color: var(--text-light);
             line-height: 1.8;
+            font-family: var(--font-body);
+            font-weight: 400;
         }
         
         /* Focus Areas */
         .focus-areas {
-            background: var(--bg-light);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+        }
+        
+        .focus-areas .section-title,
+        .focus-areas .section-subtitle {
+            color: var(--white);
         }
         
         .focus-grid {
@@ -288,15 +444,18 @@
         }
         
         .focus-item {
-            background: var(--white);
+            background: rgba(255,255,255,0.1);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 15px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .focus-item:hover {
             transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
         }
         
         .focus-icon {
@@ -307,6 +466,14 @@
         .focus-title {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+        
+        .focus-item p {
+            font-family: var(--font-body);
+            font-weight: 300;
         }
         
         /* Contact Section */
@@ -329,6 +496,7 @@
             justify-content: center;
             gap: 3rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
         
         .contact-item {
@@ -354,14 +522,30 @@
             padding: 2rem 0;
         }
         
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .hero-content {
                 grid-template-columns: 1fr;
+                padding: 100px 0 60px;
             }
             
             .hero-text h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .hero-stats {
@@ -372,8 +556,16 @@
                 display: none;
             }
             
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
             .timeline {
                 padding-left: 20px;
+            }
+            
+            .timeline-item {
+                padding: 1.5rem;
             }
             
             .timeline-item::before {
@@ -384,14 +576,23 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <header>
+    <header id="header">
         <nav class="container">
-            <div class="logo">Leah</div>
+            <div class="logo">Leah Martin</div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -399,15 +600,22 @@
                 <li><a href="#focus">Focus Areas</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Background -->
     <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Leah</h1>
+                    <h1>Leah Martin</h1>
                     <p class="subtitle">Technical Product Manager | Climate Tech Leader</p>
                     <p>Driving innovation at the intersection of environmental science and technology. 12+ years building digital products that create measurable environmental impact for Fortune 500 companies and startups.</p>
                     <div class="cta-buttons">
@@ -421,8 +629,8 @@
                         <span class="stat-label">Years Experience</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">$2M+</span>
-                        <span class="stat-label">Budgets Managed</span>
+                        <span class="stat-number">$9M+</span>
+                        <span class="stat-label">Portfolio Managed</span>
                     </div>
                     <div class="stat">
                         <span class="stat-number">10+</span>
@@ -438,10 +646,10 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <p class="section-subtitle">Bridging Technology and Environmental Impact</p>
-            <div style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8;">
-                <p style="margin-bottom: 1.5rem;">I'm a bilingual (French/English) Technical Product Manager passionate about leveraging technology to address climate challenges. With experience spanning from Syngenta to innovative startups, I specialize in building products that deliver both business value and environmental impact.</p>
+            <div class="about-content">
+                <p>I'm a bilingual (French/English) Technical Product Manager passionate about leveraging technology to address climate challenges. With experience spanning from Syngenta to innovative startups, I specialize in building products that deliver both business value and environmental impact.</p>
                 
-                <p style="margin-bottom: 1.5rem;">Currently engaged with CDR.fyi's NBS portal and participating in Cohort 8 of the Climatebase Fellowship, I'm deeply involved in carbon removal technology and methodology development. My work focuses on critiquing and improving carbon credit frameworks while developing practical solutions for enterprise-level environmental challenges.</p>
+                <p>Currently engaged with CDR.fyi's nature-based solutions portal and participating in Cohort 8 of the Climatebase Fellowship, I'm deeply involved in carbon removal technology and methodology development. My work focuses on critiquing and improving carbon credit frameworks while developing practical solutions for enterprise-level environmental challenges.</p>
                 
                 <p>Based between Boston and the French Alps, I bring a global perspective to product development, combining technical expertise with deep domain knowledge in agricultural technology, geospatial data, and environmental modeling.</p>
             </div>
@@ -449,54 +657,54 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="experience" style="background: var(--bg-light);">
+    <section id="experience" class="experience">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
             <p class="section-subtitle">Building Products That Matter</p>
             
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-date">Current Focus</div>
+                    <div class="timeline-date">2024 - Present</div>
                     <div class="timeline-title">Climate Tech Product Leadership</div>
-                    <div class="timeline-company">Multiple Opportunities</div>
+                    <div class="timeline-company">CDR.fyi & Climatebase Fellowship</div>
                     <div class="timeline-description">
-                        Actively engaged in carbon removal technology through CDR.fyi's NBS portal and Climatebase Fellowship Cohort 8. Exploring opportunities including VP Product at Atomic (Boston), Digital Transformation with Datamars (Switzerland), and Commercial Director for EU expansion with ChrysaLabs ag-tech startup.
+                        Implementing nature-based solutions portal for carbon removal verification and measurement. Participating in Climatebase Fellowship Cohort 8, advancing scientific data solutions for climate technology.
                     </div>
                 </div>
                 
                 <div class="timeline-item">
-                    <div class="timeline-date">Previous</div>
-                    <div class="timeline-title">Technical Product Manager</div>
+                    <div class="timeline-date">2020 - 2024</div>
+                    <div class="timeline-title">Vice President of Products</div>
                     <div class="timeline-company">Well Principled</div>
                     <div class="timeline-description">
-                        Led digital product development initiatives focused on environmental impact measurement and optimization. Managed cross-functional teams to deliver innovative solutions for sustainability challenges.
+                        Led product strategy for YC-backed B2B SaaS startup focused on AI-powered modeling solutions. Managed cross-functional teams to translate complex analytical models into products that drove business growth.
                     </div>
                 </div>
                 
                 <div class="timeline-item">
-                    <div class="timeline-date">Previous</div>
-                    <div class="timeline-title">Product Management</div>
-                    <div class="timeline-company">CIBO Technologies</div>
-                    <div class="timeline-description">
-                        Developed agricultural technology products leveraging geospatial data and environmental modeling. Worked with scientific stakeholders to translate complex research into scalable digital solutions.
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Previous</div>
-                    <div class="timeline-title">Digital Product Lead</div>
-                    <div class="timeline-company">Syngenta</div>
-                    <div class="timeline-description">
-                        Managed R&D digital product development for one of the world's largest agricultural companies. Led teams of 10+ members with budgets exceeding $2M, delivering enterprise-scale solutions for crop science and sustainability.
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Previous</div>
-                    <div class="timeline-title">Product Manager</div>
+                    <div class="timeline-date">2019 - 2020</div>
+                    <div class="timeline-title">Senior Product Manager - IoT & Digital Solutions</div>
                     <div class="timeline-company">Verizon Connect</div>
                     <div class="timeline-description">
-                        Developed IoT and connectivity solutions for fleet management and logistics optimization, focusing on reducing environmental impact through route optimization and fuel efficiency improvements.
+                        Managed $9M product portfolio for supply chain visibility and asset tracking solutions. Led product development for cold-chain logistics and fleet management, delivering enterprise-scale IoT solutions.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2016 - 2019</div>
+                    <div class="timeline-title">Director of Digital Product Strategy</div>
+                    <div class="timeline-company">CIBO Technologies</div>
+                    <div class="timeline-description">
+                        Built environmental data analysis tools and geospatial workflows for agriculture and climate companies. Helped Fortune 500 clients translate complex environmental datasets into actionable business intelligence.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2012 - 2016</div>
+                    <div class="timeline-title">Digital Solutions Analyst</div>
+                    <div class="timeline-company">Syngenta Crop Protection</div>
+                    <div class="timeline-description">
+                        Developed enterprise environmental data solutions for R&D and manufacturing teams. Managed digital transformation initiatives across global sites with focus on sustainable agriculture and climate impact assessment.
                     </div>
                 </div>
             </div>
@@ -517,7 +725,7 @@
                         • R&D Digital Product Development<br>
                         • Cross-functional Team Leadership<br>
                         • Stakeholder Management<br>
-                        • $2M+ Budget Management<br>
+                        • $9M+ Portfolio Management<br>
                         • Agile & Lean Methodologies
                     </div>
                 </div>
@@ -527,7 +735,7 @@
                     <h3 class="skill-title">Climate Technology</h3>
                     <div class="skill-list">
                         • Carbon Credit Methodologies<br>
-                        • NBS (Nature-based Solutions)<br>
+                        • Nature-based Solutions<br>
                         • Environmental Modeling<br>
                         • Sustainability Metrics<br>
                         • Climate Risk Assessment
@@ -540,8 +748,8 @@
                     <div class="skill-list">
                         • Geospatial Data Analysis<br>
                         • IoT Integration<br>
-                        • Digital Commerce Tools<br>
-                        • AI-powered Demand Forecasting<br>
+                        • AWS & Cloud Architecture<br>
+                        • AI/ML Applications<br>
                         • Supply Chain Optimization
                     </div>
                 </div>
@@ -552,9 +760,9 @@
                     <div class="skill-list">
                         • Agricultural Technology<br>
                         • Environmental Science<br>
-                        • Fortune 500 Implementations<br>
-                        • Scientific Research Translation<br>
-                        • Breeding Cooperative Systems
+                        • Life Sciences R&D<br>
+                        • Scientific Data Management<br>
+                        • GxP Compliance
                     </div>
                 </div>
                 
@@ -578,7 +786,7 @@
                         • Competitive Analysis<br>
                         • Revenue Optimization<br>
                         • Partnership Development<br>
-                        • Investor Relations
+                        • Executive Communication
                     </div>
                 </div>
             </div>
@@ -638,7 +846,7 @@
             </div>
             
             <div style="margin-top: 3rem;">
-                <a href="mailto:contact@example.com" class="btn btn-primary">Send Message</a>
+                <a href="mailto:leah.beth.martin@gmail.com" class="btn btn-primary">Send Message</a>
             </div>
         </div>
     </section>
@@ -646,11 +854,11 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Leah. Building a sustainable future through technology.</p>
+            <p>&copy; 2025 Leah Martin. Building a sustainable future through technology.</p>
         </div>
     </footer>
 
-    <!-- Smooth Scrolling Script -->
+    <!-- JavaScript for smooth scrolling and header effects -->
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -658,22 +866,42 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Add scroll effect to header
+        // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             if (window.scrollY > 50) {
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                header.classList.add('scrolled');
             } else {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+                header.classList.remove('scrolled');
             }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
         });
     </script>
 </body>
