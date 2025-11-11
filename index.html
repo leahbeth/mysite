@@ -292,9 +292,40 @@
             background: var(--white);
         }
         
-        .about-content {
-            max-width: 800px;
+        .about-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 4rem;
+            align-items: start;
+            max-width: 1000px;
             margin: 0 auto;
+        }
+        
+        .about-image-wrapper {
+            position: relative;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .about-image-caption {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        .about-content {
             font-size: 1.1rem;
             line-height: 1.8;
         }
@@ -376,7 +407,68 @@
             line-height: 1.6;
         }
         
+        /* Portfolio Section */
+        .portfolio {
+            background: var(--white);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .portfolio-item {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-title {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+        
+        .portfolio-company {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+        
+        .portfolio-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
         /* Skills Grid with better cards */
+        .skills {
+            background: var(--bg-light);
+        }
+        
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -424,6 +516,103 @@
             line-height: 1.8;
             font-family: var(--font-body);
             font-weight: 400;
+        }
+        
+        /* Academics Section */
+        .academics {
+            background: var(--white);
+        }
+        
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .education-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .education-degree {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+        }
+        
+        .education-school {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .education-year {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .education-details {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .certifications-section {
+            margin-top: 3rem;
+        }
+        
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .certification-item {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .certification-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+        
+        .certification-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .certification-content h4 {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+            font-family: var(--font-heading);
+        }
+        
+        .certification-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
         }
         
         /* Focus Areas */
@@ -538,6 +727,22 @@
         }
         
         /* Responsive */
+        @media (max-width: 968px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-image-wrapper {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         @media (max-width: 768px) {
             .hero-content {
                 grid-template-columns: 1fr;
@@ -596,7 +801,9 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#academics">Academics</a></li>
                 <li><a href="#focus">Focus Areas</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -646,12 +853,18 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <p class="section-subtitle">Bridging Technology and Environmental Impact</p>
-            <div class="about-content">
-                <p>I'm a bilingual (French/English) Technical Product Manager passionate about leveraging technology to address climate challenges. With experience spanning from Syngenta to innovative startups, I specialize in building products that deliver both business value and environmental impact.</p>
-                
-                <p>Currently engaged with CDR.fyi's nature-based solutions portal and participating in Cohort 8 of the Climatebase Fellowship, I'm deeply involved in carbon removal technology and methodology development. My work focuses on critiquing and improving carbon credit frameworks while developing practical solutions for enterprise-level environmental challenges.</p>
-                
-                <p>Based between Boston and the French Alps, I bring a global perspective to product development, combining technical expertise with deep domain knowledge in agricultural technology, geospatial data, and environmental modeling.</p>
+            <div class="about-container">
+                <div class="about-image-wrapper">
+                    <img src="Leah_Envers.jpg" alt="Leah Martin at high altitude camp" class="about-image">
+                    <p class="about-image-caption">Alpine mountaineering in the French Alps</p>
+                </div>
+                <div class="about-content">
+                    <p>I'm a bilingual (French/English) Technical Product Manager passionate about leveraging technology to address climate challenges. With experience spanning from Syngenta to innovative startups, I specialize in building products that deliver both business value and environmental impact.</p>
+                    
+                    <p>Currently engaged with CDR.fyi's nature-based solutions portal and participating in Cohort 8 of the Climatebase Fellowship, I'm deeply involved in carbon removal technology and methodology development. My work focuses on critiquing and improving carbon credit frameworks while developing practical solutions for enterprise-level environmental challenges.</p>
+                    
+                    <p>Based between Boston and the French Alps, I bring a global perspective to product development, combining technical expertise with deep domain knowledge in agricultural technology, geospatial data, and environmental modeling.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -705,6 +918,43 @@
                     <div class="timeline-company">Syngenta Crop Protection</div>
                     <div class="timeline-description">
                         Developed enterprise environmental data solutions for R&D and manufacturing teams. Managed digital transformation initiatives across global sites with focus on sustainable agriculture, manufacturing efficiency, and climate impact assessment.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Product Portfolio</h2>
+            <p class="section-subtitle">Real Products, Real Impact</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="1762851033244_image.png" alt="CIBO Technologies Dashboard" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Geospatial Analytics Platform</h3>
+                        <p class="portfolio-company">CIBO Technologies</p>
+                        <p class="portfolio-description">Led development of environmental data analysis platform enabling Fortune 500 clients to track sustainability metrics across global agricultural operations with real-time geospatial visualization.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="1762851078160_image.png" alt="Well Principled Product Interface" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">AI-Powered Demand Forecasting</h3>
+                        <p class="portfolio-company">Well Principled</p>
+                        <p class="portfolio-description">Built probabilistic forecasting tool for enterprise S&OP, translating complex statistical models into intuitive interfaces that drove data-driven decision making for battery and automotive manufacturers.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="Screen_Shot_2021-05-26_at_11_31_42_AM.png" alt="Well Principled Analytics Dashboard" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Forecast Performance Analytics</h3>
+                        <p class="portfolio-company">Well Principled</p>
+                        <p class="portfolio-description">Designed KPI monitoring system comparing forecast accuracy across product lines, enabling continuous model improvement and demonstrating value-add to enterprise clients.</p>
                     </div>
                 </div>
             </div>
@@ -787,6 +1037,69 @@
                         • Revenue Optimization<br>
                         • Partnership Development<br>
                         • Executive Communication
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academics Section -->
+    <section id="academics" class="academics">
+        <div class="container">
+            <h2 class="section-title">Academic Background</h2>
+            <p class="section-subtitle">Foundation in Environmental Science & Technology</p>
+            
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-degree">M.S. Geography</div>
+                    <div class="education-school">Environmental Modeling<br>Université de Nice, Sophia Antipolis, France</div>
+                    <div class="education-details">
+                        Specialized in geospatial analysis and environmental systems modeling with focus on climate adaptation and conservation planning methodologies.
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="education-degree">M.A. Comparative Literature</div>
+                    <div class="education-school">Université de Paris - La Sorbonne, Paris, France</div>
+                    <div class="education-details">
+                        Cross-cultural communication and critical analysis training that informs international stakeholder engagement and multilingual product strategy.
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="education-degree">B.A. Environmental Science & Literature</div>
+                    <div class="education-school">Washington University in St. Louis, MO, USA</div>
+                    <div class="education-details">
+                        Double major combining quantitative environmental science with effective communication skills, establishing foundation for technical product leadership.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="certifications-section">
+                <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">Professional Certifications</h3>
+                <div class="certifications-grid">
+                    <div class="certification-item">
+                        <div class="certification-icon">🎓</div>
+                        <div class="certification-content">
+                            <h4>Climatebase Fellowship</h4>
+                            <p>Cohort 8 - Climate Tech Leadership</p>
+                        </div>
+                    </div>
+                    
+                    <div class="certification-item">
+                        <div class="certification-icon">📊</div>
+                        <div class="certification-content">
+                            <h4>Lean Six Sigma Green Belt</h4>
+                            <p>Process Optimization & Quality Management</p>
+                        </div>
+                    </div>
+                    
+                    <div class="certification-item">
+                        <div class="certification-icon">🔄</div>
+                        <div class="certification-content">
+                            <h4>Scrum Master Training</h4>
+                            <p>Agile Product Development</p>
+                        </div>
                     </div>
                 </div>
             </div>
